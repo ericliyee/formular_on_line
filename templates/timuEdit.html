@@ -2,12 +2,14 @@
 <html>
     <head>
 	<title>Eric 题目编辑工具</title>
+
 	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
 	<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
 	<script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 	<script type="text/javascript" async
 		src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
 	</script>
+	<script src="//cdn.bootcss.com/jquery/3.1.1/jquery.min.js"></script>
 	<script type="text/x-mathjax-config">
 	 MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script>
 
@@ -41,6 +43,10 @@
 		     var area= document.getElementById('{{ tm.id }}tigan')
 		     tiganue.setContent(area.value)
 		 })
+		 function storetigan(){
+		     var tigan =UE.getEditor('{{tm.id}}tigan_editor').getContent();
+		     $.post('/tigan_edit',{'timu_id':{{tm.id}},'tigan_edit':tigan},function(data,status){alert(data)});
+		 }
 		</script>
 	    </div>
 
@@ -66,6 +72,10 @@
 		     var area= document.getElementById('{{ tm.id }}jieda')
 		     jiedaue.setContent(area.value)
 		 })
+		 function storejieda(){
+		     var jieda =UE.getEditor('{{tm.id}}jieda_editor').getContent();
+		     $.post('/jieda_edit',{'timu_id':{{tm.id}},'jieda_edit':jieda},function(data,status){alert(data)});
+		 }
 		</script>
 	    </div>
 	    {% if len(tm.jiexi) >1 %}
@@ -91,6 +101,10 @@
 		     var area= document.getElementById('{{ tm.id }}jiexi')
 		     jiexiue.setContent(area.value)
 		 })
+		 function storejiexi(){
+		     var jiexi =UE.getEditor('{{tm.id}}jiexi_editor').getContent();
+		     $.post('/jiexi_edit',{'timu_id':{{tm.id}},'jiexi_edit':jiexi},function(data,status){alert(data)});
+		 }
 		</script>
 	    </div>
 	    {% end %}
