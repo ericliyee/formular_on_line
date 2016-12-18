@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+  <head>
+    <title>Eric 富文本编辑</title>
+    <script type="text/javascript" async
+	    src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
+    </script>
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script>
+
+    <script type="text/javascript" charset="utf-8" src="{{ static_url('ueditor/ueditor.config.js') }}"></script>
+    <script type="text/javascript" charset="utf-8" src="{{ static_url('ueditor/ueditor.all.min.js') }}"> </script>
+    <script type="text/javascript" charset="utf-8" src="{{ static_url('ueditor/lang/zh-cn/zh-cn.js') }}"></script>
+  </head>
+
+  <body>
+    {% for tm in timus%}
+    <div style="text-align:center">题干</div>
+    <textarea id='{{ tm.id }}tigan' style="display:none">
+      {{ tm.tigan }}
+   </textarea>
+    <div style='width:1000px;height:300px;margin:auto'>
+      <script id='{{ tm.id }}tigan_editor' type='text/plan'></script>
+    </div>
+    <script type="text/javascript">
+      var tiganue = UE.getEditor('{{ tm.id }}tigan_editor', {
+      });
+      tiganue.ready(function(){
+      var area= document.getElementById('{{ tm.id }}tigan')
+      tiganue.setContent(area.value)
+      })
+    </script>
+    <div style="text-align:center">解答</div>
+    <textarea id='{{ tm.id }}jieda' style="display:none">
+      {{ tm.jieda }}
+   </textarea>
+    <div style='width:1000px;height:300px;margin:auto'>
+      <script id='{{ tm.id }}jieda_editor' type='text/plan'></script>
+    </div>
+    <script type="text/javascript">
+      var jiedaue = UE.getEditor('{{ tm.id }}jieda_editor', {
+      });
+      jiedaue.ready(function(){
+      var area= document.getElementById('{{ tm.id }}jieda')
+      jiedaue.setContent(area.value)
+      })
+    </script>
+    {% if len(tm.jiexi) <1%}
+     <div style="text-align:center">解析</div>
+    <textarea id='{{ tm.id }}jiexi' style="display:none">
+      {{ tm.jiexi }}
+   </textarea>
+    <div style='width:1000px;height:300px;margin:auto'>
+      <script id='{{ tm.id }}jiexi_editor' type='text/plan'></script>
+    </div>
+    <script type="text/javascript">
+      var jiexiue = UE.getEditor('{{ tm.id }}jiexi_editor', {
+      });
+      jiexiue.ready(function(){
+      var area= document.getElementById('{{ tm.id }}jiexi')
+      jiedaxi.setContent(area.value)
+      })
+    </script>
+    {% end %}
+    {% end %}
+</body> </html>

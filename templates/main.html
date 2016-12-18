@@ -1,0 +1,27 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+  <head>
+    <title></title>
+    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+    <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+  </head>
+
+  <body>
+    {% for tm in timus %}
+    <div class='row'>
+      <div class='col-md-10' style='margin:auto'>
+	<button type = 'button' class=' btn btn-primary'>{{ tm.id }}</button>
+	<button type = 'button' class=' btn btn-success'>{{
+	  tm.zhang }}|{{tm.jie}}</button>
+	<button type = 'button' class=' btn btn-warning' style="text-align:right">修
+	  改</button>
+      </div>
+      <div>
+	<div>{{tm.tigan}}</div>
+      </div>
+    </div>
+    <br>
+    {% end %}
+  </body>
+</html>
