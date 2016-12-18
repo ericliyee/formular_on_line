@@ -1,57 +1,57 @@
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
 <html>
-  <head>
-    <title></title>
-    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
-    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
-    <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-    <script type='text/javascript'>
-      function edittimu(obj){
-      btn = obj
-      path ='http://localhost:8000/timuedit/?timu_id='+btn.id
-      window.open(path)
-      }
-    </script>
-  </head>
+    <head>
+	<title></title>
+	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+	<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+	<script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+	<script type='text/javascript'>
+	 function edittimu(obj){
+	     btn = obj
+	     path ='http://localhost:8000/timuedit/?timu_id='+btn.id
+	     window.open(path)
+	 }
+	</script>
+    </head>
 
-  <body>
-    {% for tm in timus %}
-    <div class='container'>
-      <div class='row'>
+    <body>
+	{% for tm in timus %}
+	<div class='container'>
+	    <div class='row'>
 
-	<button type = 'button' class=' btn btn-primary'>题目ID:{{ tm.id }}</button>
-	<button type = 'button' class=' btn btn-success'>{{
-	  tm.zhang }}|{{tm.jie}}</button>
-	<button type = 'button' id={{tm.id}} class=' btn btn-warning'
-	  style="text-align:right" onclick="edittimu(this)">修
-	  改</button>
-	<div>
-	  <div class='row' style='padding:15px;'>
-	    <div class='col-md-12' >
-	      <h2>题干</h2>
-	      <div>{{tm.tigan}}</div>
-	      {% if len(tm.dana)>0 %}
-	      <div class='col-md-2'>{{tm.dana}}</div>
-	      <div class='col-md-2'>{{tm.danb}}</div>
-	      <div class='col-md-2'>{{tm.danc}}</div>
-	      <div class='col-md-2'>{{tm.dand}}</div>
-	      {% end %}
+		<button type = 'button' class=' btn btn-primary'>题目ID:{{ tm.id }}</button>
+		<button type = 'button' class=' btn btn-success'>{{
+		    tm.zhang }}|{{tm.jie}}</button>
+		<button type = 'button' id={{tm.id}} class=' btn btn-warning'
+style="text-align:right" onclick="edittimu(this)">修
+		    改</button>
+		<div>
+		    <div class='row' style='padding:15px;'>
+			<div class='col-md-12' >
+			    <h2>题干</h2>
+			    <div>{{tm.tigan}}</div>
+			    {% if len(tm.dana)>0 %}
+			    <div class='col-md-2'>{{tm.dana}}</div>
+			    <div class='col-md-2'>{{tm.danb}}</div>
+			    <div class='col-md-2'>{{tm.danc}}</div>
+			    <div class='col-md-2'>{{tm.dand}}</div>
+			    {% end %}
+			</div>
+			<div class='col-md-12'>
+			    <h2>解答</h2>
+			    <div>{{tm.jieda}}</div>
+			</div>
+			{% if len(tm.jiexi)>0%}
+			<div class='col-md-12'>
+			    <h2>解析</h2>
+			    <div>{{tm.jiexi}}</div>
+			</div>
+			{%end %}
+		    </div>
+		</div>
 	    </div>
-	    <div class='col-md-12'>
-	      <h2>解答</h2>
-	      <div>{{tm.jieda}}</div>
-	    </div>
-	    {% if len(tm.jiexi)>0%}
-	    <div class='col-md-12'>
-	      <h2>解析</h2>
-	      <div>{{tm.jiexi}}</div>
-	    </div>
-	    {% end %}
-	  </div>
 	</div>
-      </div>
-    </div>
-    <hr>
-    {% end %}
-  </body>
+	<hr>
+	{% end %}
+    </body>
 </html>

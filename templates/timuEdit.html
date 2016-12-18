@@ -1,82 +1,100 @@
 <!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
 <html>
-  <head>
-    <title>Eric 题目编辑工具</title>
-    <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
-    <script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
-    <script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-    <script type="text/javascript" async
-	    src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
-    </script>
-    <script type="text/x-mathjax-config">
-      MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script>
-
-    <script type="text/javascript" charset="utf-8" src="{{ static_url('ueditor/ueditor.config.js') }}"></script>
-    <script type="text/javascript" charset="utf-8" src="{{ static_url('ueditor/ueditor.all.min.js') }}"> </script>
-    <script type="text/javascript" charset="utf-8" src="{{ static_url('ueditor/lang/zh-cn/zh-cn.js') }}"></script>
-  </head>
-
-  <body>
-    <div class='container'>
-      <div class='row'>
-	{% for tm in timus%}
-	<h2 style='text-align:center'>题干</h2>
-	<textarea id='{{ tm.id }}tigan' style="display:none">
-	  {{ tm.tigan }}
-	</textarea>
-	<div style='width:800px;margin:auto'>
-	  <form action='/edit/?tm_id={{tm.id}}' method=post name=tigan>
-	    <script id='{{ tm.id }}tigan_editor'
-		    type='text/plan'></script>
-	  </form>
-	</div>
-	<script type="text/javascript">
-	  var tiganue = UE.getEditor('{{ tm.id }}tigan_editor', {
-	  });
-	  tiganue.ready(function(){
-	  var area= document.getElementById('{{ tm.id }}tigan')
-	  tiganue.setContent(area.value)
-	  })
+    <head>
+	<title>Eric 题目编辑工具</title>
+	<link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.0/css/bootstrap.min.css">
+	<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+	<script src="http://cdn.bootcss.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+	<script type="text/javascript" async
+		src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_CHTML">
 	</script>
-      </div>
+	<script type="text/x-mathjax-config">
+	 MathJax.Hub.Config({tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}});</script>
 
-      <div class='row'>
-	<h2 style="text-align:center">解答</h2>
-	<textarea id='{{ tm.id }}jieda' style="display:none">
+	<script type="text/javascript" charset="utf-8" src="{{ static_url('ueditor/ueditor.config.js') }}"></script>
+	<script type="text/javascript" charset="utf-8" src="{{ static_url('ueditor/ueditor.all.min.js') }}"> </script>
+	<script type="text/javascript" charset="utf-8" src="{{ static_url('ueditor/lang/zh-cn/zh-cn.js') }}"></script>
+    </head>
+
+    <body>
+	<div class='container'>
+	    {% for tm in timus%}
+	    <div class='row'>
+		<div class="col-md-4">
+		    <h2 style='text-align:right'>题干</h2>
+		</div>
+		<div class="col-md-2">
+		    <button class="btn btn-success" style="margin:20px;" onclick="storetigan()">保存</button>
+		</div>
+	    </div>
+	    <div class="row">
+		<textarea id='{{ tm.id }}tigan' style="display:none">{{ tm.tigan }}</textarea>
+		<div style='width:800px;margin:auto'>
+		    <form action='/edit/?tm_id={{tm.id}}' method=post name=tigan>
+			<script id='{{ tm.id }}tigan_editor'type='text/plan'></script>
+		    </form>
+		</div>
+		<script type="text/javascript">
+		 var tiganue = UE.getEditor('{{ tm.id }}tigan_editor', {
+		 });
+		 tiganue.ready(function(){
+		     var area= document.getElementById('{{ tm.id }}tigan')
+		     tiganue.setContent(area.value)
+		 })
+		</script>
+	    </div>
+
+	    <div class='row'>
+		<div class="col-md-4">
+		    <h2 style='text-align:right'>解答</h2>
+		</div>
+		<div class="col-md-2">
+		    <button class="btn btn-success" style="margin:20px;" onclick="storejieda()">保存</button>
+		</div>
+	    </div>
+	    <div class="row">
+		<textarea id='{{ tm.id }}jieda' style="display:none">
 	  {{ tm.jieda }}
-	</textarea>
-	<div style='width:800px;height:800px;margin:auto'>
-	  <script id='{{ tm.id }}jieda_editor' type='text/plan'></script>
-	</div>
-	<script type="text/javascript">
-	  var jiedaue = UE.getEditor('{{ tm.id }}jieda_editor', {
-	  });
-	  jiedaue.ready(function(){
-	  var area= document.getElementById('{{ tm.id }}jieda')
-	  jiedaue.setContent(area.value)
-	  })
-	</script>
-      </div>
-      {% if len(tm.jiexi) >1 %}
-      <div class='row'>
-	<h2 style="text-align:center">解析</h2>
-	<textarea id='{{ tm.id }}jiexi' style="display:none">
+		</textarea>
+		<div style='width:800px;margin:auto'>
+		    <script id='{{ tm.id }}jieda_editor' type='text/plan'></script>
+		</div>
+		<script type="text/javascript">
+		 var jiedaue = UE.getEditor('{{ tm.id }}jieda_editor', {
+		 });
+		 jiedaue.ready(function(){
+		     var area= document.getElementById('{{ tm.id }}jieda')
+		     jiedaue.setContent(area.value)
+		 })
+		</script>
+	    </div>
+	    {% if len(tm.jiexi) >1 %}
+	    <div class='row'>
+		<div class="col-md-4">
+		    <h2 style='text-align:right'>解析</h2>
+		</div>
+		<div class="col-md-2">
+		    <button class="btn btn-success" style="margin:20px;" onclick="storejiexi()">保存</button>
+		</div>
+	    </div>
+	    <div class='row'>
+		<textarea id='{{ tm.id }}jiexi' style="display:none">
 	  {{ tm.jiexi }}
-	</textarea>
-	<div style='width:800px;margin:auto'>
-	  <script id='{{ tm.id }}jiexi_editor' type='text/plan'></script>
+		</textarea>
+		<div style='width:800px;margin:auto'>
+		    <script id='{{ tm.id }}jiexi_editor' type='text/plan'></script>
+		</div>
+		<script type="text/javascript">
+		 var jiexiue = UE.getEditor('{{ tm.id }}jiexi_editor', {
+		 });
+		 jiexiue.ready(function(){
+		     var area= document.getElementById('{{ tm.id }}jiexi')
+		     jiexiue.setContent(area.value)
+		 })
+		</script>
+	    </div>
+	    {% end %}
+	    {% end %}
 	</div>
-	<script type="text/javascript">
-	  var jiexiue = UE.getEditor('{{ tm.id }}jiexi_editor', {
-	  });
-	  jiexiue.ready(function(){
-	  var area= document.getElementById('{{ tm.id }}jiexi')
-	  jiexiue.setContent(area.value)
-	  })
-	</script>
-      </div>
-      {% end %}
-      {% end %}
-    </div>
-  </body>
+    </body>
 </html>
