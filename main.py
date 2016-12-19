@@ -23,7 +23,7 @@ class tigan_Edit(web.RequestHandler):
         for tm in session.query(timu).filter(timu.id==tm_id):
             tm.tigan = new_tigan
         session.commit()
-        self.write('刘厂长的修改保存成功了!')
+        self.write('保存成功!')
 
 class jieda_Edit(web.RequestHandler):
     @gen.coroutine
@@ -39,7 +39,7 @@ class jieda_Edit(web.RequestHandler):
         for tm in session.query(timu).filter(timu.id==tm_id):
             tm.jieda = new_jieda
         session.commit()
-        self.write('刘厂长的修改保存成功了!')
+        self.write('保存成功!')
 
 class jiexi_Edit(web.RequestHandler):
     @gen.coroutine
@@ -55,7 +55,7 @@ class jiexi_Edit(web.RequestHandler):
         for tm in session.query(timu).filter(timu.id==tm_id):
             tm.jiexi = new_jiexi
         session.commit()
-        self.write('刘厂长的修改保存成功了!')
+        self.write('保存成功!')
 
         
 class EditTimu(web.RequestHandler):

@@ -6,7 +6,7 @@ from sqlalchemy.ext.declarative import declarative_base
 Base = declarative_base()
 
 class timu(Base):
-    __tablename__ = 'timu'
+    __tablename__ = 'tp_timu'
     id = Column(Integer(),primary_key=True)
     tigan = Column(TEXT())
     dana = Column(TEXT())
@@ -37,6 +37,6 @@ class timu(Base):
     tixing = Column(VARCHAR())
     excelid = Column(VARCHAR())
 
-engine = create_engine('mysql+pymysql://root:root@127.0.0.1:3306/shuati_kfk?charset=utf8', encoding='utf-8', echo=False)
+engine = create_engine('mysql+pymysql://root:root@127.0.0.1:3306/ssst?charset=utf8', encoding='utf-8', echo=False)
 DBsession = sessionmaker(bind=engine)
 session = DBsession()
